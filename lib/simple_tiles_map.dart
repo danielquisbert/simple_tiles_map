@@ -59,7 +59,6 @@ class SimpleTilesMap extends StatelessWidget {
       TileLayer(
         urlTemplate: _setTypeMap(typeMap),
         subdomains: _getSubdomains(typeMap),
-        // typeMap == TypeMap.osm ? ['a', 'b', 'c'] : [],
       ),
     );
     for (var l in otherLayers!) {
