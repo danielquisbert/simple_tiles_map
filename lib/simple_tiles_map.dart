@@ -27,6 +27,8 @@ class SimpleTilesMap extends StatelessWidget {
   double? initialZoom;
   MapController? mapController;
   List<Widget>? otherLayers;
+  double? minZoom;
+  double? maxZoom;
 
   SimpleTilesMap(
       {Key? key,
@@ -35,7 +37,9 @@ class SimpleTilesMap extends StatelessWidget {
       this.attrib,
       this.otherLayers,
       this.mapController,
-      this.initialZoom})
+      this.initialZoom,
+      this.minZoom,
+      this.maxZoom})
       : super(key: key);
 
   @override
@@ -44,7 +48,9 @@ class SimpleTilesMap extends StatelessWidget {
     otherLayers = otherLayers ?? [];
     mapController = mapController ?? MapController();
     initialZoom = initialZoom ?? 12;
-    attrib = attrib ?? 'ge0tic.github.io';
+    attrib = attrib ?? '| Simple Tiles Map';
+    minZoom = minZoom ?? 5;
+    maxZoom = maxZoom ?? 22;
     return addBaseLayer();
   }
 
@@ -52,8 +58,8 @@ class SimpleTilesMap extends StatelessWidget {
     List<Widget> listLayers = [];
     MapOptions mOpts = MapOptions(
       center: mapCenter,
-      maxZoom: 22,
-      minZoom: 2,
+      maxZoom: maxZoom,
+      minZoom: minZoom,
     );
     listLayers.add(
       TileLayer(

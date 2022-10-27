@@ -1,3 +1,7 @@
+## 1.1.0
+
+Set minZoom and maxZoom
+
 ## 1.0.2
 
 Ejemplo de insertar un marker
