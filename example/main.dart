@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_map/flutter_map.dart';
+import 'package:latlong2/latlong.dart';
 import 'package:simple_tiles_map/simple_tiles_map.dart';
 
 void main() => runApp(const MyApp());
@@ -8,6 +10,12 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    LatLng? mapCenter = LatLng(-16.480954, -68.189594);
+    MapOptions mapOptions = MapOptions(
+      center: mapCenter,
+      maxZoom: 19,
+      minZoom: 5,
+    );
     return MaterialApp(
       title: 'Tiles Basemap',
       home: Scaffold(
@@ -16,7 +24,7 @@ class MyApp extends StatelessWidget {
         ),
         body: Column(
           children: [
-            SimpleTilesMap(typeMap: TypeMap.stamenWater),
+            SimpleTilesMap(typeMap: TypeMap.stamenWater, mOpts: mapOptions),
           ],
         ),
       ),

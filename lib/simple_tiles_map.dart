@@ -22,6 +22,7 @@ enum TypeMap {
 // ignore: must_be_immutable
 class SimpleTilesMap extends StatelessWidget {
   final TypeMap typeMap;
+  MapOptions mOpts;
   LatLng? mapCenter;
   String? attrib;
   double? initialZoom;
@@ -33,6 +34,7 @@ class SimpleTilesMap extends StatelessWidget {
   SimpleTilesMap(
       {Key? key,
       required this.typeMap,
+      required this.mOpts,
       this.mapCenter,
       this.attrib,
       this.otherLayers,
@@ -56,11 +58,7 @@ class SimpleTilesMap extends StatelessWidget {
 
   Widget addBaseLayer() {
     List<Widget> listLayers = [];
-    MapOptions mOpts = MapOptions(
-      center: mapCenter,
-      maxZoom: maxZoom,
-      minZoom: minZoom,
-    );
+
     listLayers.add(
       TileLayer(
         urlTemplate: _setTypeMap(typeMap),

@@ -1,3 +1,7 @@
+## 1.2.0
+
+Adición MapOptions
+
 ## 1.1.0
 
 Set minZoom and maxZoom
