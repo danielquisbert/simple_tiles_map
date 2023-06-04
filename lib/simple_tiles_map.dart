@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_map/flutter_map.dart';
-import 'package:latlong2/latlong.dart';
 
 enum TypeMap {
   osm,
@@ -21,58 +20,45 @@ enum TypeMap {
 
 // ignore: must_be_immutable
 class SimpleTilesMap extends StatelessWidget {
-  final TypeMap typeMap;
-  MapOptions mOpts;
-  LatLng? mapCenter;
+  TypeMap typeMap;
+  MapOptions mapOptions;
   String? attrib;
-  double? initialZoom;
+  List<Widget>? otherLayers = [];
   MapController? mapController;
-  List<Widget>? otherLayers;
-  double? minZoom;
-  double? maxZoom;
+
+  
 
   SimpleTilesMap(
       {Key? key,
       required this.typeMap,
-      required this.mOpts,
-      this.mapCenter,
+      required this.mapOptions,
       this.attrib,
       this.otherLayers,
       this.mapController,
-      this.initialZoom,
-      this.minZoom,
-      this.maxZoom})
+  })
       : super(key: key);
+  List<Widget> layers = [];
 
   @override
-  Widget build(BuildContext context) {
-    mapCenter = mapCenter ?? LatLng(-16.480954, -68.189594);
-    otherLayers = otherLayers ?? [];
+  Widget build(BuildContext context) {  
+    layers = otherLayers ?? [];
     mapController = mapController ?? MapController();
-    initialZoom = initialZoom ?? 12;
     attrib = attrib ?? '| Simple Tiles Map';
-    minZoom = minZoom ?? 5;
-    maxZoom = maxZoom ?? 22;
     return addBaseLayer();
   }
 
   Widget addBaseLayer() {
-    List<Widget> listLayers = [];
-
-    listLayers.add(
+    layers.add(
       TileLayer(
         urlTemplate: _setTypeMap(typeMap),
         subdomains: _getSubdomains(typeMap),
       ),
     );
-    for (var l in otherLayers!) {
-      listLayers.add(l);
-    }
-
+    
     return Flexible(
       child: FlutterMap(
         mapController: mapController,
-        options: mOpts,
+        options: mapOptions,
         nonRotatedChildren: [
           Atribuciones.defaultWidget(
             source: attrib.toString(),
@@ -80,7 +66,7 @@ class SimpleTilesMap extends StatelessWidget {
             onSourceTapped: () {},
           )
         ],
-        children: listLayers,
+        children:  layers.map((e) => e).toList(),
       ),
     );
   }
