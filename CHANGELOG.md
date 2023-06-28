@@ -1,9 +1,11 @@
+## 1.3.1
+
+uso de flutter_map 5
 ## 1.3.0
 
 Soporte dart 3 
 Corrección bug en opciones del mapa
-uso de flutter_map 4, se deja de usar latlong2
-
+uso de flutter_map 4
 ## 1.2.0
 
 Adición MapOptions

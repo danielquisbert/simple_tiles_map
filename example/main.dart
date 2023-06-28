@@ -10,7 +10,7 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    LatLng? mapCenter = LatLng(-16.480954, -68.189594);
+    LatLng? mapCenter = const LatLng(-16.480954, -68.189594);
     MapOptions mapOptions = MapOptions(
       center: mapCenter,
       maxZoom: 19,
