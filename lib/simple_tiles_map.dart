@@ -41,19 +41,21 @@ class SimpleTilesMap extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {  
-    layers = otherLayers ?? [];
+    otherLayers = otherLayers ?? [];
     mapController = mapController ?? MapController();
     attrib = attrib ?? '| Simple Tiles Map';
     return addBaseLayer();
   }
 
   Widget addBaseLayer() {
-    layers.add(
+    List<Widget> listLayers = [];
+    listLayers.add(
       TileLayer(
         urlTemplate: _setTypeMap(typeMap),
         subdomains: _getSubdomains(typeMap),
       ),
     );
+    otherLayers?.map((e) => listLayers.add(e));
     
     return Flexible(
       child: FlutterMap(
@@ -66,7 +68,7 @@ class SimpleTilesMap extends StatelessWidget {
             onSourceTapped: () {},
           )
         ],
-        children:  layers.map((e) => e).toList(),
+        children:  listLayers,
       ),
     );
   }

@@ -1,3 +1,6 @@
+## 1.3.2
+
+Corrección capas sobrepuestas
 ## 1.3.1
 
 uso de flutter_map 5
