@@ -1,3 +1,6 @@
+## 1.3.3
+
+Corrección capas sobrepuestas boucle
 ## 1.3.2
 
 Corrección capas sobrepuestas

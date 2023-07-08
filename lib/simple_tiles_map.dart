@@ -55,7 +55,9 @@ class SimpleTilesMap extends StatelessWidget {
         subdomains: _getSubdomains(typeMap),
       ),
     );
-    otherLayers?.map((e) => listLayers.add(e));
+    for (var l in otherLayers!) {
+      listLayers.add(l);
+    }
     
     return Flexible(
       child: FlutterMap(
