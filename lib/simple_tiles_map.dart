@@ -53,6 +53,7 @@ class SimpleTilesMap extends StatelessWidget {
       TileLayer(
         urlTemplate: _setTypeMap(typeMap),
         subdomains: _getSubdomains(typeMap),
+        maxZoom: 20
       ),
     );
     for (var l in otherLayers!) {
