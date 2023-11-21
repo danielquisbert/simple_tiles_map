@@ -12,7 +12,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     LatLng? mapCenter = const LatLng(-16.480954, -68.189594);
     MapOptions mapOptions = MapOptions(
-      center: mapCenter,
+      initialCenter: mapCenter,
       maxZoom: 19,
       minZoom: 5,
     );
@@ -24,7 +24,8 @@ class MyApp extends StatelessWidget {
         ),
         body: Column(
           children: [
-            SimpleTilesMap(typeMap: TypeMap.stamenWater, mapOptions: mapOptions),
+            SimpleTilesMap(
+                typeMap: TypeMap.stamenWater, mapOptions: mapOptions),
           ],
         ),
       ),

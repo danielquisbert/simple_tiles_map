@@ -26,21 +26,18 @@ class SimpleTilesMap extends StatelessWidget {
   List<Widget>? otherLayers = [];
   MapController? mapController;
 
-  
-
-  SimpleTilesMap(
-      {Key? key,
-      required this.typeMap,
-      required this.mapOptions,
-      this.attrib,
-      this.otherLayers,
-      this.mapController,
-  })
-      : super(key: key);
+  SimpleTilesMap({
+    Key? key,
+    required this.typeMap,
+    required this.mapOptions,
+    this.attrib,
+    this.otherLayers,
+    this.mapController,
+  }) : super(key: key);
   List<Widget> layers = [];
 
   @override
-  Widget build(BuildContext context) {  
+  Widget build(BuildContext context) {
     otherLayers = otherLayers ?? [];
     mapController = mapController ?? MapController();
     attrib = attrib ?? '| Simple Tiles Map';
@@ -51,27 +48,24 @@ class SimpleTilesMap extends StatelessWidget {
     List<Widget> listLayers = [];
     listLayers.add(
       TileLayer(
-        urlTemplate: _setTypeMap(typeMap),
-        subdomains: _getSubdomains(typeMap),
-        maxZoom: 20
-      ),
+          urlTemplate: _setTypeMap(typeMap),
+          subdomains: _getSubdomains(typeMap),
+          maxZoom: 20),
     );
     for (var l in otherLayers!) {
       listLayers.add(l);
     }
-    
+    listLayers.add(Atribuciones.defaultWidget(
+      source: attrib.toString(),
+      typeMap: typeMap,
+      onSourceTapped: () {},
+    ));
+
     return Flexible(
       child: FlutterMap(
         mapController: mapController,
         options: mapOptions,
-        nonRotatedChildren: [
-          Atribuciones.defaultWidget(
-            source: attrib.toString(),
-            typeMap: typeMap,
-            onSourceTapped: () {},
-          )
-        ],
-        children:  listLayers,
+        children: listLayers,
       ),
     );
   }

@@ -1,6 +1,11 @@
+## 1.3.5
+
+Update flutter_map
+
 ## 1.3.4
 
 Add maxzoom to 20 in tilelayer
+
 ## 1.3.3
 
 Corrección capas sobrepuestas boucle
