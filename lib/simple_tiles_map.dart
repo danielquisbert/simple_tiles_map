@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_map/flutter_map.dart';
+import 'package:flutter_map_tile_caching/flutter_map_tile_caching.dart';
 
 enum TypeMap {
   osm,
@@ -25,14 +26,20 @@ class SimpleTilesMap extends StatelessWidget {
   String? attrib;
   List<Widget>? otherLayers = [];
   MapController? mapController;
+  bool isOffline = false;
+  String? packageId;
+  int? cachedValidDuration;
 
   SimpleTilesMap({
     Key? key,
     required this.typeMap,
     required this.mapOptions,
+    required this.isOffline,
     this.attrib,
     this.otherLayers,
     this.mapController,
+    this.packageId,
+    this.cachedValidDuration,
   }) : super(key: key);
   List<Widget> layers = [];
 
@@ -46,6 +53,19 @@ class SimpleTilesMap extends StatelessWidget {
 
   Widget addBaseLayer() {
     List<Widget> listLayers = [];
+    TileLayer offlineTileLayer = TileLayer(
+      urlTemplate: _setTypeMap(typeMap),
+      userAgentPackageName: packageId ?? "com.simpletilesmap.app",
+      tileProvider: const FMTCStore("OfflineMap").getTileProvider(
+          settings: FMTCTileProviderSettings(
+        behavior: CacheBehavior.cacheFirst,
+        maxStoreLength: 20000,
+        cachedValidDuration: Duration(days: cachedValidDuration ?? 200),
+        errorHandler: (exception) {
+          debugPrint("ERROR: $exception");
+        },
+      )),
+    );
     listLayers.add(
       TileLayer(
           urlTemplate: _setTypeMap(typeMap),
@@ -65,13 +85,15 @@ class SimpleTilesMap extends StatelessWidget {
       child: FlutterMap(
         mapController: mapController,
         options: mapOptions,
-        children: listLayers,
+        children: [
+          if (isOffline) ...[offlineTileLayer] else ...[...listLayers]
+        ],
       ),
     );
   }
 
   String? _setTypeMap(TypeMap t) {
-    String urlTileProvider = "";
+    String urlTileProvider = TileProviders.urlOsm;
     switch (t) {
       case TypeMap.google:
         urlTileProvider = TileProviders.urlGoogle;

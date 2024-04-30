@@ -74,6 +74,7 @@ class MyApp extends StatelessWidget {
           children: [
             SimpleTilesMap(
               typeMap: TypeMap.osmHot,
+              isOffline: false,
               otherLayers: [
                 MarkerLayer(
                   markers: [

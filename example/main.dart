@@ -25,7 +25,10 @@ class MyApp extends StatelessWidget {
         body: Column(
           children: [
             SimpleTilesMap(
-                typeMap: TypeMap.stamenWater, mapOptions: mapOptions),
+              typeMap: TypeMap.stamenWater,
+              mapOptions: mapOptions,
+              isOffline: false,
+            ),
           ],
         ),
       ),
