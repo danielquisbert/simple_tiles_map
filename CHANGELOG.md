@@ -1,3 +1,12 @@
+## 2.0.1
+
+set urlTileProvider default OSM
+
+## 2.0.0
+
+Version 2
+add offline map
+
 ## 1.3.5
 
 Update flutter_map
