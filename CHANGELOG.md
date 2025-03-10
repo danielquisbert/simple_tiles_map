@@ -1,3 +1,7 @@
+## 2.1.1
+
+Fix protocol https url map google
+
 ## 2.1.0
 
 Update flutterMap, improvment clases

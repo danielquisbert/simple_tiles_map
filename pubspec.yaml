@@ -2,7 +2,7 @@ name: simple_tiles_map
 description: Crea fondos de mapa de OpenStreetMap, google, Stamen, CartoMap,
   Esri de forma sencilla.
 repository: https://github.com/danielquisbert/simple_tiles_map
-version: 2.1.0
+version: 2.1.1
 homepage: https://danielquisbert.github.io
 
 environment:
