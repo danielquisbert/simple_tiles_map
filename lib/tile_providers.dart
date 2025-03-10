@@ -5,7 +5,7 @@ class TileProviders {
   static final Map<TypeMap, String> urlTemplates = {
     TypeMap.google: "https://mt1.google.com/vt/lyrs=r&x={x}&y={y}&z={z}",
     TypeMap.googleSatellite: "https://www.google.cn/maps/vt?lyrs=s@189&gl=cn&x={x}&y={y}&z={z}",
-    TypeMap.googleHybrid: "http://mt{s}.google.com/vt/lyrs=s,h&x={x}&y={y}&z={z}",
+    TypeMap.googleHybrid: "https://mt{s}.google.com/vt/lyrs=s,h&x={x}&y={y}&z={z}",
     TypeMap.osm: "https://{s}.tile.osm.org/{z}/{x}/{y}.png",
     TypeMap.osmHot: "https://{s}.tile.openstreetmap.fr/hot/{z}/{x}/{y}.png",
     TypeMap.osmFr: "https://{s}.tile.openstreetmap.fr/osmfr/{z}/{x}/{y}.png",
