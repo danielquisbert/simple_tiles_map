@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_map/flutter_map.dart';
 import 'package:latlong2/latlong.dart';
 import 'package:simple_tiles_map/simple_tiles_map.dart';
+import 'package:simple_tiles_map/type_map.dart';
 
 void main() => runApp(const MyApp());
 
@@ -27,7 +28,7 @@ class MyApp extends StatelessWidget {
             SimpleTilesMap(
               typeMap: TypeMap.stamenWater,
               mapOptions: mapOptions,
-              isOffline: false,
+              isOffline: false, mapController: MapController(),
             ),
           ],
         ),

@@ -1,3 +1,7 @@
+## 2.1.0
+
+Update flutterMap, improvment clases
+
 ## 2.0.1
 
 set urlTileProvider default OSM
