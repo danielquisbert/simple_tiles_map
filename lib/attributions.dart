@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
-
 import 'type_map.dart';
 
 class Attributions {
-  // Map de atribuciones para cada tipo de mapa
   static final Map<TypeMap, String> _attributions = {
     TypeMap.google: "Google Maps",
     TypeMap.googleSatellite: "Google Maps",
@@ -22,12 +20,10 @@ class Attributions {
     TypeMap.custom: "Custom",
   };
 
-  // Obtener atribución por tipo
   static String getAttribution(TypeMap type) {
     return _attributions[type] ?? "Map data";
   }
 
-  // Widget de atribución
   static Widget buildWidget({
     required String source,
     required TypeMap typeMap,

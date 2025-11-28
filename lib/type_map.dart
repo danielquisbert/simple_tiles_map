@@ -1,5 +1,3 @@
-
-
 enum TypeMap {
   osm,
   osmHot,

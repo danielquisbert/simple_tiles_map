@@ -10,7 +10,7 @@ import 'type_map.dart';
 class SimpleTilesMap extends StatefulWidget {
   final TypeMap typeMap;
   final MapOptions mapOptions;
-  final String? customUrlTemplate; // Para mapas personalizados
+  final String? customUrlTemplate;
   final String attribution;
   final List<Widget> additionalLayers;
   final MapController mapController;
@@ -22,8 +22,8 @@ class SimpleTilesMap extends StatefulWidget {
   final bool showAttribution;
   final String storeName;
 
-  SimpleTilesMap({
-    Key? key,
+  const SimpleTilesMap({
+    super.key,
     required this.typeMap,
     required this.mapOptions,
     this.customUrlTemplate,
@@ -37,7 +37,7 @@ class SimpleTilesMap extends StatefulWidget {
     this.onCacheError,
     this.showAttribution = true,
     this.storeName = "OfflineMap",
-  }) : super(key: key);
+  });
 
   @override
   State<SimpleTilesMap> createState() => _SimpleTilesMapState();
@@ -56,7 +56,7 @@ class _SimpleTilesMapState extends State<SimpleTilesMap> {
   @override
   void didUpdateWidget(SimpleTilesMap oldWidget) {
     super.didUpdateWidget(oldWidget);
-    if (oldWidget.typeMap != widget.typeMap || 
+    if (oldWidget.typeMap != widget.typeMap ||
         oldWidget.customUrlTemplate != widget.customUrlTemplate) {
       _updateMapSettings();
     }
@@ -74,31 +74,26 @@ class _SimpleTilesMapState extends State<SimpleTilesMap> {
 
   @override
   Widget build(BuildContext context) {
-    return Flexible(
-      child: FlutterMap(
-        mapController: widget.mapController,
-        options: widget.mapOptions,
-        children: _buildLayers(),
-      ),
+    return FlutterMap(
+      mapController: widget.mapController,
+      options: widget.mapOptions,
+      children: _buildLayers(),
     );
   }
 
   List<Widget> _buildLayers() {
     final List<Widget> layers = [];
-    
-    // Determinar el Layer de tiles (online u offline)
+
     if (widget.isOffline) {
       layers.add(_buildOfflineTileLayer());
     } else {
       layers.add(_buildOnlineTileLayer());
     }
-    
-    // Añadir capas adicionales
+
     if (widget.additionalLayers.isNotEmpty) {
       layers.addAll(widget.additionalLayers);
     }
-    
-    // Añadir atribución si está habilitada
+
     if (widget.showAttribution) {
       layers.add(
         Attributions.buildWidget(
@@ -107,7 +102,7 @@ class _SimpleTilesMapState extends State<SimpleTilesMap> {
         ),
       );
     }
-    
+
     return layers;
   }
 
@@ -126,16 +121,13 @@ class _SimpleTilesMapState extends State<SimpleTilesMap> {
       subdomains: _subdomains,
       userAgentPackageName: widget.packageId,
       tileProvider: FMTCTileProvider(
-        stores:  {widget.storeName: BrowseStoreStrategy.read},
+        stores: {widget.storeName: BrowseStoreStrategy.read},
         cachedValidDuration: Duration(days: widget.cachedValidDuration),
-        errorHandler: (e){
+        errorHandler: (e) {
           debugPrint("Error: $e");
           return Uint8List(256);
-        }
-      )
+        },
+      ),
     );
   }
-
 }
-
-// Extensiones para facilitar el us

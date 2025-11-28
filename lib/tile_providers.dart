@@ -1,7 +1,6 @@
 import 'type_map.dart';
 
 class TileProviders {
-  // URLs de proveedores organizadas en un Map para facilitar mantenimiento
   static final Map<TypeMap, String> urlTemplates = {
     TypeMap.google: "https://mt1.google.com/vt/lyrs=r&x={x}&y={y}&z={z}",
     TypeMap.googleSatellite: "https://www.google.cn/maps/vt?lyrs=s@189&gl=cn&x={x}&y={y}&z={z}",
@@ -19,12 +18,10 @@ class TileProviders {
     TypeMap.esriTopo: "https://server.arcgisonline.com/ArcGIS/rest/services/World_Topo_Map/MapServer/tile/{z}/{y}/{x}",
   };
 
-  // Obtener URL por tipo
   static String getUrlTemplate(TypeMap type) {
     return urlTemplates[type] ?? urlTemplates[TypeMap.osm]!;
   }
 
-  // Obtener subdominios por tipo
   static List<String> getSubdomains(TypeMap type) {
     switch (type) {
       case TypeMap.google:
